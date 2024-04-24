@@ -11,7 +11,7 @@ build_property.RootNamespace = GeekShopping.Web
 build_property.ProjectDir = C:\Users\Usuário\source\repos\GeekShopping\GeekShopping.Web\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\Usuário\source\repos\GeekShopping\GeekShopping.Web
 build_property._RazorSourceGeneratorDebug = 
 

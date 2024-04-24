@@ -1,5 +1,6 @@
 ﻿using GeekShopping.Web.Services;
 using GeekShopping.Web.Services.IServices;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,27 @@ namespace GeekShopping.Web
                     c.BaseAddress = new Uri(Configuration["ServiceUrls:ProductAPI"])
                 );
             services.AddControllersWithViews();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+
+            })
+                .AddCookie("Cookies", c => c.ExpireTimeSpan = TimeSpan.FromMinutes(10))
+                .AddOpenIdConnect("oidc", opt =>
+                {
+                    opt.Authority = Configuration["ServiceUrls:IdentityServer"];
+                    opt.GetClaimsFromUserInfoEndpoint = true;
+                    opt.ClientId = "geek_shopping";
+                    opt.ClientSecret = "my_super_secret";
+                    opt.ResponseType = "code";
+                    opt.ClaimActions.MapJsonKey("role", "role", "role");
+                    opt.ClaimActions.MapJsonKey("sub", "sub", "sub");
+                    opt.TokenValidationParameters.NameClaimType = "name";
+                    opt.TokenValidationParameters.RoleClaimType = "role";
+                    opt.Scope.Add("geek_shopping");
+                    opt.SaveTokens = true;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +68,8 @@ namespace GeekShopping.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
