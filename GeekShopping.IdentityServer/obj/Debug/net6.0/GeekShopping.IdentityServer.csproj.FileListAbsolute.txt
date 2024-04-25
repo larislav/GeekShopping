@@ -64,3 +64,4 @@ C:\Users\Usuário\source\repos\GeekShopping\GeekShopping.IdentityServer\bin\Debu
 C:\Users\Usuário\source\repos\GeekShopping\GeekShopping.IdentityServer\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 C:\Users\Usuário\source\repos\GeekShopping\GeekShopping.IdentityServer\bin\Debug\net6.0\System.Text.Json.dll
 C:\Users\Usuário\source\repos\GeekShopping\GeekShopping.IdentityServer\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\Usuário\source\repos\GeekShopping\GeekShopping.IdentityServer\bin\Debug\net6.0\keys\is-signing-key-2D89E60DCFAA73DE5FEC63ACA3A36776.json
