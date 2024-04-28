@@ -1,5 +1,6 @@
 ﻿using GeekShopping.CartAPI.Config;
 using GeekShopping.CartAPI.Model.Context;
+using GeekShopping.CartAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -26,10 +27,11 @@ namespace GeekShopping.CartAPI
                         new MySqlServerVersion(
                             new Version(8, 3, 0))));
 
-             var mapper = MappingConfig.RegisterMaps().CreateMapper();
-             services.AddSingleton(mapper);
-             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            var mapper = MappingConfig.RegisterMaps().CreateMapper();
+            services.AddSingleton(mapper);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            services.AddScoped<ICartRepository, CartRepository>();
 
             services.AddControllers();
 
@@ -84,7 +86,7 @@ namespace GeekShopping.CartAPI
 
             });
 
-           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
